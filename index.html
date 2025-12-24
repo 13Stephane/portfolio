@@ -102,9 +102,7 @@
     .btn:active{transform: translateY(0px)}
 
     /* Hero */
-    header.hero{
-      padding:72px 0 34px;
-    }
+    header.hero{ padding:72px 0 34px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -119,9 +117,7 @@
       letter-spacing:.8px;
       text-transform:uppercase;
     }
-    .dot{
-      width:8px; height:8px; border-radius:99px; background: var(--brown);
-    }
+    .dot{ width:8px; height:8px; border-radius:99px; background: var(--brown); }
     h1{
       margin:14px 0 0;
       font-size:54px;
@@ -171,7 +167,7 @@
     }
 
     /* Sections */
-    section{padding:46px 0}
+    section{ padding:46px 0; }
     .section-head{
       display:flex; align-items:flex-end; justify-content:space-between;
       gap:18px; flex-wrap:wrap;
@@ -231,6 +227,7 @@
       border-radius: 26px;
       padding:18px;
       box-shadow: var(--shadow);
+      transition: transform 160ms ease;
     }
 
     /* Clickable sample wrapper */
@@ -240,22 +237,14 @@
       border-radius: 26px;
       outline: none;
     }
-    .sample-link:focus-visible{
-      box-shadow: 0 0 0 4px rgba(33,57,64,.22);
-    }
-    .sample-link:hover .health{
-      transform: translateY(-1px);
-    }
+    .sample-link:focus-visible{ box-shadow: 0 0 0 4px rgba(33,57,64,.22); }
+    .sample-link:hover .health{ transform: translateY(-1px); }
 
     .health-top{
       display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
       margin-bottom:14px;
     }
-    .health-title{
-      margin:0;
-      font-size:18px;
-      color: var(--green);
-    }
+    .health-title{ margin:0; font-size:18px; color: var(--green); }
     .health-sub{
       margin-top:4px;
       color: var(--muted2);
@@ -324,6 +313,39 @@
       margin-top:10px;
       color: var(--muted2);
       font-size:13px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .hint b{ color: var(--green); }
+
+    /* Commentary box next to sample */
+    .commentary{
+      border:1px solid rgba(33,57,64,.16);
+      background: rgba(255,255,255,.40);
+      border-radius: var(--radius2);
+      padding:18px;
+      box-shadow: 0 14px 40px rgba(18,22,24,.06);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .commentary h3{
+      margin:0;
+      font-size:16px;
+      color: var(--green);
+      letter-spacing:-.1px;
+    }
+    .commentary p{
+      margin:0;
+      color: var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .commentary .meta{
+      color: var(--muted2);
+      font-size:13px;
     }
 
     /* Tilted portfolios */
@@ -359,73 +381,6 @@
     }
     .note p{margin:0; color:var(--muted); font-size:14px; max-width:80ch}
 
-    /* Modal (full HealthCard preview) */
-    dialog{
-      width:min(760px, calc(100% - 40px));
-      border:none;
-      border-radius: 26px;
-      padding:0;
-      box-shadow: 0 24px 80px rgba(18,22,24,.30);
-      background: rgba(255,255,255,.92);
-    }
-    dialog::backdrop{
-      background: rgba(18,22,24,.35);
-      backdrop-filter: blur(3px);
-    }
-    .modal-header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:16px 18px;
-      border-bottom:1px solid rgba(33,57,64,.14);
-    }
-    .modal-header strong{
-      color: var(--green);
-      font-size:14px;
-      letter-spacing:.4px;
-      text-transform:uppercase;
-    }
-    .icon-btn{
-      appearance:none;
-      border:1px solid rgba(33,57,64,.18);
-      background: rgba(220,220,210,.55);
-      color: var(--green);
-      border-radius:999px;
-      padding:10px 12px;
-      cursor:pointer;
-      font-weight:800;
-    }
-    .modal-body{
-      padding:18px;
-    }
-    .modal-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-    }
-    .full-evidence{
-      border:1px solid rgba(33,57,64,.14);
-      background: rgba(220,220,210,.45);
-      border-radius: 18px;
-      padding:14px;
-    }
-    .full-evidence h4{
-      margin:0 0 10px;
-      color: var(--green);
-      font-size:14px;
-      letter-spacing:-.1px;
-    }
-    .full-evidence ul{
-      margin:0;
-      padding-left:18px;
-      color: var(--muted);
-      font-size:14px;
-    }
-    .full-evidence li{margin:6px 0}
-    .modal-actions{
-      display:flex; gap:10px; flex-wrap:wrap;
-      padding:0 18px 18px;
-    }
-
     /* Contact footer */
     footer{
       padding:38px 0 46px;
@@ -452,10 +407,11 @@
 
 <body>
   <!--
-    IMPORTANT:
-    Place your uploaded files here (or update paths):
-      - Logo:           ./assets/ethosalpha-logo.png
-      - Culture piece:  ./assets/culture-piece.png
+    IMPORTANT (assets):
+      - Logo:          ./assets/ethosalpha-logo.png
+      - Puzzle piece:  ./assets/culture-piece.png
+      - Tesla report:  ./assets/ethosalpha-report.html   (this is the full HealthCard report you uploaded)
+      - Method note:   ./assets/EthosAlpha-Methodology-Note.pdf
   -->
 
   <div class="nav">
@@ -553,14 +509,18 @@
         <div>
           <h2>HealthCards</h2>
           <p>
-            Visitors can click a sample to view the full card preview (e.g., Tesla) with expanded evidence and interpretation.
+            Click a sample to open the full HealthCard report in a new tab (example: Tesla).
           </p>
         </div>
       </div>
 
       <div class="grid-2">
-        <!-- CLICKABLE SAMPLE (opens modal) -->
-        <a class="sample-link" href="#tesla" data-open="tesla-modal" aria-label="Open full preview of Tesla HealthCard">
+        <!-- CLICKABLE SAMPLE (opens full report) -->
+        <a class="sample-link"
+           href="./assets/ethosalpha-report.html"
+           target="_blank"
+           rel="noopener"
+           aria-label="Open full preview of Tesla HealthCard report in a new tab">
           <article class="health" aria-label="Tesla sample culture health card">
             <div class="health-top">
               <div>
@@ -586,28 +546,28 @@
               <span class="chip">Job security concerns</span>
             </div>
 
-            <div class="hint">Click to open full preview →</div>
+            <div class="hint">
+              <span>Open full report</span>
+              <b>→</b>
+            </div>
           </article>
         </a>
 
-        <div class="card">
-          <h3>How to use a HealthCard</h3>
+        <!-- Commentary (2–3 sentences) -->
+        <aside class="commentary" aria-label="Tesla analysis summary">
+          <h3>Tesla — analysis summary</h3>
           <p>
-            HealthCards are designed for investment committees and research workflows:
-            fast read, evidence-backed, consistent across companies.
+            Tesla’s culture appears highly aligned with its strategy of rapid innovation and industrial scaling—strong mission clarity and
+            performance norms support speed and ambitious delivery. However, soundness is constrained by sustained intensity: recurring
+            signals around pressure and long hours raise execution risk via retention, burnout, and reduced psychological safety in pockets.
+            Congruence is mixed; monitoring triggers include attrition shifts, service backlog escalation, and sentiment breakpoints.
           </p>
-          <div class="pill-row" style="margin-top:14px">
-            <span class="pill">Overweight</span>
-            <span class="pill">Neutral</span>
-            <span class="pill">Underweight</span>
-          </div>
-          <p style="margin-top:12px">
-            The signal is driven by the Three Pillars—especially soundness and congruence, where execution and reputation risk accumulate.
-          </p>
-          <div style="margin-top:14px">
+          <div class="meta">Click the Tesla sample to view the full EthosAlpha HealthCard report.</div>
+
+          <div style="margin-top:6px">
             <a class="btn" href="#methodology">EthosAlpha Methodology Note</a>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   </section>
@@ -690,7 +650,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (only the contact card remains; nothing replaces the removed box) -->
   <section id="contact">
     <div class="container">
       <div class="section-head">
@@ -700,29 +660,13 @@
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3>Methodology first</h3>
-          <p>
-            Prefer to review the approach before talking? Start with the Methodology Note, then request coverage examples
-            aligned to your universe.
-          </p>
-          <div style="margin-top:14px">
-            <a class="btn" href="#methodology">EthosAlpha Methodology Note</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Contact</h3>
-          <p style="margin-bottom:12px">
-            <a class="btn primary" href="mailto:hello@ethosalpha.example?subject=EthosAlpha%20demo%20request">
-              Email EthosAlpha
-            </a>
-          </p>
-          <p style="margin:0; color:var(--muted2); font-size:13px">
-            Replace <code>hello@ethosalpha.example</code> with your real address.
-          </p>
-        </div>
+      <div class="card" style="max-width:560px">
+        <h3>Contact</h3>
+        <p style="margin-bottom:12px">
+          <a class="btn primary" href="mailto:hello@ethosalpha.example?subject=EthosAlpha%20demo%20request">
+            Email EthosAlpha
+          </a>
+        </p>
       </div>
     </div>
   </section>
@@ -742,74 +686,10 @@
     </div>
   </footer>
 
-  <!-- FULL PREVIEW MODAL: TESLA -->
-  <dialog id="tesla-modal" aria-label="Tesla HealthCard full preview">
-    <div class="modal-header">
-      <strong>Tesla — HealthCard (Full Preview)</strong>
-      <button class="icon-btn" data-close aria-label="Close">Close</button>
-    </div>
-
-    <div class="modal-body">
-      <div class="modal-grid">
-        <!-- Reuse the same HealthCard inside modal (expanded) -->
-        <div class="health" style="box-shadow:none; background: rgba(255,255,255,.65);">
-          <div class="health-top">
-            <div>
-              <div class="health-title">Tesla</div>
-              <div class="health-sub">Full preview • Culture signal</div>
-            </div>
-            <div class="signal">UNDERWEIGHT</div>
-          </div>
-
-          <div class="metric"><span>Strategically appropriate</span><span><strong>4.0</strong>/5</span></div>
-          <div class="bar" aria-hidden="true"><div class="fill" style="width:80%"></div></div>
-
-          <div class="metric"><span>Sound</span><span><strong>3.0</strong>/5</span></div>
-          <div class="bar" aria-hidden="true"><div class="fill" style="width:60%"></div></div>
-
-          <div class="metric"><span>Congruent</span><span><strong>3.0</strong>/5</span></div>
-          <div class="bar" aria-hidden="true"><div class="fill" style="width:60%"></div></div>
-
-          <div class="evidence">
-            <span class="chip brown">High pressure</span>
-            <span class="chip brown">Long hours</span>
-            <span class="chip">Innovation intensity</span>
-            <span class="chip">Job security concerns</span>
-          </div>
-        </div>
-
-        <div class="full-evidence">
-          <h4>Interpretation</h4>
-          <ul>
-            <li><strong>Strategic appropriateness:</strong> high intensity supports speed and innovation throughput.</li>
-            <li><strong>Soundness:</strong> sustained pressure signals elevated burnout/retention risk and reduced learning quality over time.</li>
-            <li><strong>Congruence:</strong> watch for gaps between stated employee experience and external signals under scaling or restructuring.</li>
-          </ul>
-        </div>
-
-        <div class="full-evidence">
-          <h4>Risk flags</h4>
-          <ul>
-            <li>Execution risk from organizational strain under sustained intensity.</li>
-            <li>Talent retention and employer brand pressure in competitive hiring markets.</li>
-            <li>Potential volatility around leadership or operational re-optimizations.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-actions">
-      <a class="btn" href="#methodology">Review methodology</a>
-      <a class="btn primary" href="mailto:hello@ethosalpha.example?subject=EthosAlpha%20demo%20request">
-        Request coverage examples
-      </a>
-    </div>
-  </dialog>
-
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Animate HealthCard bars (page only; modal uses fixed widths)
+    // Animate HealthCard bars (homepage)
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function animate(el, target){
       el.style.width = prefersReduced ? (target + '%') : '0%';
@@ -824,39 +704,9 @@
       const target = Number(el.getAttribute('data-fill') || '0');
       animate(el, target);
     });
-
-    // Modal open/close behavior
-    const openers = document.querySelectorAll('[data-open]');
-    openers.forEach(a => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const id = a.getAttribute('data-open');
-        const dlg = document.getElementById(id);
-        if (dlg && typeof dlg.showModal === 'function') dlg.showModal();
-      });
-    });
-
-    document.querySelectorAll('dialog [data-close]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const dlg = btn.closest('dialog');
-        if (dlg) dlg.close();
-      });
-    });
-
-    // Close dialog on backdrop click
-    document.querySelectorAll('dialog').forEach(dlg => {
-      dlg.addEventListener('click', (e) => {
-        const rect = dlg.getBoundingClientRect();
-        const isInDialog = (
-          e.clientX >= rect.left && e.clientX <= rect.right &&
-          e.clientY >= rect.top && e.clientY <= rect.bottom
-        );
-        // If click lands outside dialog's visual box, close
-        if (!isInDialog) dlg.close();
-      });
-    });
   </script>
 </body>
 </html>
+
 
 
