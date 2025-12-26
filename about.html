@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us | Ethos Alpha</title>
+  <style>
+    :root{
+      /* Ethos Alpha-ish palette */
+      --bg: #F3F0E7;
+      --ink: #0F2F2A;
+      --muted: rgba(15,47,42,.72);
+      --card: rgba(255,255,255,.55);
+      --stroke: rgba(15,47,42,.18);
+      --accent: #9A4F19; /* warm ochre/rust */
+      --shadow: 0 10px 30px rgba(15,47,42,.10);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--ink);
+      background: radial-gradient(1200px 700px at 40% 0%, #ffffff 0%, var(--bg) 55%, #efe9dd 100%);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; }
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    header{
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--stroke);
+      margin-bottom: 34px;
+    }
+    .eyebrow{
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 650;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    h1{
+      margin: 10px 0 0;
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.12;
+    }
+
+    /* Vision */
+    .vision{
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 26px;
+      align-items: start;
+      margin-top: 26px;
+    }
+    @media (max-width: 920px){
+      .vision{ grid-template-columns: 1fr; }
+    }
+    .panel{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .panel-body{ padding: 26px 26px 22px; }
+    .panel h2{
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: -.01em;
+    }
+    .panel p{ margin: 0 0 14px; color: var(--muted); }
+    .panel p:last-child{ margin-bottom: 0; }
+
+    .vision-figure{
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Keeps the flywheel visually stable across screen sizes (square art) */
+    .vision-figure .img-wrap{
+      width: 100%;
+      max-width: 520px;          /* prevents overgrowth on wide layouts */
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;       /* flywheel is designed as a square */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vision-figure img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;       /* never distort, never crop */
+      display: block;
+      border-radius: calc(var(--radius) - 6px);
+      border: 1px solid var(--stroke);
+      background: #fff;
+    }
+
+    @media (max-width: 720px){
+      .vision-figure .img-wrap{ max-width: 380px; }
+    }
+
+    .caption{
+      font-size: 12.5px;
+      color: rgba(15,47,42,.62);
+    }
+
+    /* Bios */
+    .section-title{
+      margin: 46px 0 14px;
+      font-size: 20px;
+      letter-spacing: -.01em;
+    }
+    .bios{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 980px){
+      .bios{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px){
+      .bios{ grid-template-columns: 1fr; }
+    }
+
+    .bio-card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 420px;
+    }
+    .bio-photo{
+      aspect-ratio: 4 / 3;
+      background:
+        linear-gradient(180deg, rgba(15,47,42,.08), rgba(15,47,42,.02)),
+        repeating-linear-gradient(45deg, rgba(154,79,25,.10), rgba(154,79,25,.10) 8px, rgba(154,79,25,.06) 8px, rgba(154,79,25,.06) 16px);
+      border-bottom: 1px solid var(--stroke);
+      display: grid;
+      place-items: center;
+      color: rgba(15,47,42,.65);
+      font-weight: 650;
+      letter-spacing: .02em;
+    }
+    .bio-photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .bio-body{ padding: 18px 18px 20px; }
+    .bio-name{
+      margin: 0;
+      font-size: 18px;
+    }
+    .bio-role{
+      margin: 4px 0 12px;
+      color: var(--accent);
+      font-weight: 650;
+      font-size: 13px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .bio-text{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    footer{
+      margin-top: 44px;
+      padding-top: 18px;
+      border-top: 1px solid var(--stroke);
+      color: rgba(15,47,42,.55);
+      font-size: 12.5px;
+    }
+
+    /* Small “brand” pill (optional) */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.35);
+      margin-top: 14px;
+      color: rgba(15,47,42,.70);
+      font-weight: 600;
+      font-size: 13px;
+      width: fit-content;
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="eyebrow"><a href="./index.html" style="text-decoration:none">Ethos Alpha</a></div>
+      <h1>About Us</h1>
+      <div class="pill"><span class="dot"></span><span>Culture, made investable</span></div>
+    </header>
+
+    <!-- VISION -->
+    <section class="vision" aria-label="Vision">
+      <div class="panel">
+        <div class="panel-body">
+          <h2>Vision</h2>
+          <p>Culture is widely acknowledged as a driver of long-term performance, yet it remains poorly defined, weakly measured, and rarely treated as an investment variable.</p>
+          <p><strong>Ethos Alpha exists to change this.</strong></p>
+          <p>Our ambition is to turn culture into a measurable, investable source of alpha. By making cultural quality visible and comparable, we aim to activate a virtuous flywheel: investors demand stronger cultures, management responds with deliberate improvements, organizations become healthier and more adaptive, and financial performance follows.</p>
+          <p>The result is durable returns grounded in human systems that work, and a form of capitalism that rewards coherence, trust, and long-term value creation. Better performance, and a better world.</p>
+        </div>
+      </div>
+
+      <div class="panel vision-figure" aria-label="Vision flywheel diagram">
+        <!-- Replace src with your website path, e.g. /assets/ethosalpha-flywheel.png -->
+        <div class="img-wrap">
+          <img src="A_diagram_in_the_form_of_a_digital_illustration_fe.png" alt="Ethos Alpha virtuous flywheel: culture to alpha performance" />
+        </div>
+        <div class="caption">The Ethos Alpha flywheel: culture → α</div>
+      </div>
+    </section>
+
+    <!-- BIOS (supports up to 3) -->
+    <h2 class="section-title">Founders</h2>
+
+    <section class="bios" aria-label="Founder biographies">
+      <!-- BIO 1: Stéphane -->
+      <article class="bio-card">
+        <div class="bio-photo">
+          <!-- Replace with Stéphane's photo -->
+          <!-- <img src="/assets/stephane.jpg" alt="Portrait of Stéphane"> -->
+          Stéphane photo
+        </div>
+        <div class="bio-body">
+          <h3 class="bio-name">Stéphane</h3>
+          <div class="bio-role">Founder &amp; CEO</div>
+          <p class="bio-text">
+            Stéphane works at the intersection of AI innovation, culture and finance, bridging the gap between vision and action.
+            <br><br>
+            He began his journey as an actuary, working in reinsurance in Toronto, Canada. After earning a Master’s in Artificial Intelligence (with High Honors), he worked as a financial engineer on capital markets and in investment management at BNP Paribas. He then earned an MBA from UC Berkeley, and spent 15 years as a management consultant, entrepreneur, and lecturer in Silicon Valley and Canada. Recently, he led Executive Education at the Technical University of Denmark (DTU), where culture and innovation became his canvas. During his spare time, he teaches advanced meditation techniques and breathwork.
+          </p>
+        </div>
+      </article>
+
+      <!-- BIO 2 (optional) -->
+      <article class="bio-card" aria-hidden="true" style="opacity:.55;">
+        <div class="bio-photo">Founder photo</div>
+        <div class="bio-body">
+          <h3 class="bio-name">Founder Name</h3>
+          <div class="bio-role">Title</div>
+          <p class="bio-text">Add up to two more biographies here. Remove this card if unused.</p>
+        </div>
+      </article>
+
+      <!-- BIO 3 (optional) -->
+      <article class="bio-card" aria-hidden="true" style="opacity:.55;">
+        <div class="bio-photo">Founder photo</div>
+        <div class="bio-body">
+          <h3 class="bio-name">Founder Name</h3>
+          <div class="bio-role">Title</div>
+          <p class="bio-text">Add up to two more biographies here. Remove this card if unused.</p>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Ethos Alpha. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
